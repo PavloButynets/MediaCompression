@@ -1,7 +1,7 @@
-import VideoConverter from './components/MediaConverter';
+import MediaConverter from './components/MediaConverter';
 
 function App() {
-  return <VideoConverter />;
+  return <MediaConverter />;
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import VideocamIcon from '@mui/icons-material/Videocam';
-import VideoUploader from './VideoUploader';
-import VideoSettings from './VideoSettings';
+import MediaUploader from './VideoUploader';
+import MediaSettings from './VideoSettings';
 import { useFFmpeg } from '../hooks/useFFmpeg';
 import type { ConversionSettings } from '../types';
 
@@ -15,7 +15,7 @@ const defaultSettings: ConversionSettings = {
   compressionMethod: 'bitrate'
 };
 
-export default function VideoConverter() {
+export default function MediaConverter() {
   const [file, setFile] = useState<File | null>(null);
   const [settings, setSettings] = useState<ConversionSettings>(defaultSettings);
   const [showSettings, setShowSettings] = useState(false);
@@ -64,14 +64,14 @@ export default function VideoConverter() {
         </div>
 
         {showSettings && (
-          <VideoSettings
+          <MediaSettings
             settings={settings}
             onSettingsChange={setSettings}
           />
         )}
 
         <div>
-          <VideoUploader
+          <MediaUploader
             file={file}
             onFileChange={setFile}
             error={error}

@@ -1,11 +1,11 @@
 import type { ConversionSettings } from '../types';
 
-interface VideoSettingsProps {
+interface MediaSettingsProps {
   settings: ConversionSettings;
   onSettingsChange: (settings: ConversionSettings) => void;
 }
 
-export default function VideoSettings({ settings, onSettingsChange }: VideoSettingsProps) {
+export default function MediaSettings({ settings, onSettingsChange }: MediaSettingsProps) {
   const handleSettingChange = (key: keyof ConversionSettings, value: string) => {
     onSettingsChange({ ...settings, [key]: value });
   };

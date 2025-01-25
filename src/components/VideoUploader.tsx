@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import UploadIcon from '@mui/icons-material/Upload';
 
-interface VideoUploaderProps {
+interface MediaUploaderProps {
   file: File | null;
   onFileChange: (file: File | null) => void;
   error: string | null;
@@ -11,14 +11,14 @@ interface VideoUploaderProps {
   isLoadingFFmpeg: boolean;
 }
 
-export default function VideoUploader({
+export default function MediaUploader({
   file,
   onFileChange,
   error,
   loading,
   progress,
   isLoadingFFmpeg
-}: VideoUploaderProps) {
+}: MediaUploaderProps) {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
