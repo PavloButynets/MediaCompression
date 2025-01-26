@@ -1,4 +1,5 @@
 import type { ConversionSettings } from '../types';
+import { styles } from './VideoSettings.styles.ts';
 
 interface MediaSettingsProps {
   settings: ConversionSettings;
@@ -14,21 +15,20 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
     switch (settings.compressionMethod) {
       case 'percentage':
         return (
-          <div>
-            <label>
-              Target Quality Percentage
-            </label>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}>Target Quality Percentage</label>
             <input
+              style={styles.input}
               type="range"
               min="1"
               max="100"
               value={settings.targetPercentage || '100'}
               onChange={(e) => handleSettingChange('targetPercentage', e.target.value)}
             />
-            <div>
+            <div style={styles.textSmall}>
               {settings.targetPercentage || '100'}% quality
             </div>
-            <p>
+            <p style={styles.description}>
               Adjust the quality percentage where 100% maintains highest quality and 1% gives maximum compression.
               Lower values result in smaller files but may reduce video quality.
             </p>
@@ -36,18 +36,17 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
         );
       case 'filesize':
         return (
-          <div>
-            <label>
-              Target File Size (MB)
-            </label>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}>Target File Size (MB)</label>
             <input
+              style={styles.input}
               type="number"
               min="1"
               max="10240"
               value={settings.targetFilesize || '100'}
               onChange={(e) => handleSettingChange('targetFilesize', e.target.value)}
             />
-            <p>
+            <p style={styles.description}>
               Enter desired video file size in MB (Megabytes). Larger sizes maintain better quality.
               Maximum 10240MB (10GB).
             </p>
@@ -55,11 +54,10 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
         );
       case 'crf':
         return (
-          <div>
-            <label>
-              Video Quality (QP)
-            </label>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}>Video Quality (QP)</label>
             <select
+              style={styles.select}
               value={settings.crfValue || '23'}
               onChange={(e) => handleSettingChange('crfValue', e.target.value)}
             >
@@ -69,16 +67,17 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
                 </option>
               ))}
             </select>
-            <p>
+            <p style={styles.description}>
               Lower values mean better quality but larger file size. 18 is visually lossless, 51 is worst quality.
             </p>
           </div>
         );
       case 'bitrate':
         return (
-          <div>
-            <label>Video Bitrate</label>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}>Video Bitrate</label>
             <select
+              style={styles.select}
               value={settings.videoBitrate}
               onChange={(e) => handleSettingChange('videoBitrate', e.target.value)}
             >
@@ -94,12 +93,13 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
   };
 
   return (
-    <div>
-      <h2>Conversion Settings</h2>
+    <div style={styles.container}>
+      <h2 style={styles.header}>Conversion Settings</h2>
       <div>
-        <div>
-          <label>Compression Method</label>
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Compression Method</label>
           <select
+            style={styles.select}
             value={settings.compressionMethod || 'bitrate'}
             onChange={(e) => handleSettingChange('compressionMethod', e.target.value)}
           >
@@ -109,14 +109,15 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
             <option value="crf">Target a video quality (QP)</option>
           </select>
         </div>
-        
+
         <div>
           {renderCompressionControl()}
         </div>
 
-        <div>
-          <label>Video Codec</label>
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Video Codec</label>
           <select
+            style={styles.select}
             value={settings.videoCodec}
             onChange={(e) => handleSettingChange('videoCodec', e.target.value)}
           >
@@ -124,9 +125,11 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
             <option value="libx265">H.265</option>
           </select>
         </div>
-        <div>
-          <label>Audio Codec</label>
+
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Audio Codec</label>
           <select
+            style={styles.select}
             value={settings.audioCodec}
             onChange={(e) => handleSettingChange('audioCodec', e.target.value)}
           >
@@ -134,9 +137,11 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
             <option value="mp3">MP3</option>
           </select>
         </div>
-        <div>
-          <label>Audio Bitrate</label>
+
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Audio Bitrate</label>
           <select
+            style={styles.select}
             value={settings.audioBitrate}
             onChange={(e) => handleSettingChange('audioBitrate', e.target.value)}
           >
@@ -147,9 +152,11 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
             <option value="256k">256 kbps</option>
           </select>
         </div>
-        <div>
-          <label>Frame Rate</label>
+
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Frame Rate</label>
           <select
+            style={styles.select}
             value={settings.frameRate}
             onChange={(e) => handleSettingChange('frameRate', e.target.value)}
           >
@@ -158,9 +165,11 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
             <option value="60">60 fps</option>
           </select>
         </div>
-        <div>
-          <label>Max Resolution</label>
+
+        <div style={styles.inputWrapper}>
+          <label style={styles.label}>Max Resolution</label>
           <select
+            style={styles.select}
             value={settings.resolution}
             onChange={(e) => handleSettingChange('resolution', e.target.value)}
           >
@@ -170,7 +179,7 @@ export default function MediaSettings({ settings, onSettingsChange }: MediaSetti
           </select>
         </div>
       </div>
-      <p>Note: Resolution scaling maintains the original aspect ratio</p>
+      <p style={styles.note}>Note: Resolution scaling maintains the original aspect ratio</p>
     </div>
   );
 }

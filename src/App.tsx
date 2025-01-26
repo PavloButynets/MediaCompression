@@ -1,4 +1,4 @@
-import MediaConverter from './components/MediaConverter';
+import MediaConverter from './containers/MediaConverter';
 
 function App() {
   return <MediaConverter />;
