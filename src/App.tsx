@@ -1,7 +1,7 @@
-import MediaConverter from './containers/MediaConverter';
+import VideoCompression from './pages/VideoComression';
 
 function App() {
-  return <MediaConverter />;
+  return <VideoCompression />;
 }
 
 export default App;
